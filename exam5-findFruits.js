@@ -141,3 +141,38 @@ console.log(foo2(1166));
 console.log(foo2(10000));
 
 
+
+// 제출용
+const getSum = (num) => {
+  let total = 0;
+
+  while (num > 0) {
+    total += num % 10;
+    num = Math.floor(num / 10);
+  }
+
+  return total;
+};
+
+const findFruits = (n) => {
+    const fruits = {
+        9:'apple',18:'apple',27:'apple',36:'apple',45:'apple'
+        ,54:'apple',72:'apple',81:'apple',90:'apple',99:'apple'
+    }
+
+    let result = n;
+    while (result > 100) {
+        result -= getSum(result);
+    }
+    result -= getSum(result);
+
+    return fruits[result];
+};
+console.log("------------");
+console.log(findFruits(10));
+console.log(findFruits(11));
+console.log(findFruits(18));
+console.log(findFruits(25));;
+console.log(findFruits(205));
+console.log(findFruits(1166));
+console.log(findFruits(10000));
