@@ -73,7 +73,7 @@ console.log("------");
 
 
 
-
+/*
 // 방법2) 조건 : 10~10000 사이의 숫자만 입력
 // 원래 숫자 - 각 자리의 숫자 합 => 결과값은 항상 9의 배수
 // f(n) = n - (각 자리 숫자 합)
@@ -139,9 +139,9 @@ console.log(foo2(25));;
 console.log(foo2(205));
 console.log(foo2(1166));
 console.log(foo2(10000));
+*/
 
-
-
+/*
 // 제출용
 const getSum = (num) => {
   let total = 0;
@@ -176,3 +176,77 @@ console.log(findFruits(25));;
 console.log(findFruits(205));
 console.log(findFruits(1166));
 console.log(findFruits(10000));
+*/
+
+
+// 방법 3 ) 리팩토링
+const getDigitSum = (num) => {
+  let total = 0;
+
+  while (num > 0) {
+    total += num % 10;
+    num = Math.floor(num / 10);
+  }
+
+  return total;
+};
+
+const reduceNumber = (num) => {
+  let result = num;
+
+  while (result > 100) {
+    result -= getDigitSum(result);
+  }
+
+  return result - getDigitSum(result);
+};
+
+const getFruit = (num) => {
+  const reduced = reduceNumber(num);
+  return reduced % 9 === 0 ? 'apple' : undefined;
+};
+
+console.log(getFruit(25));;
+console.log(getFruit(205));
+console.log(getFruit(1166));
+console.log(getFruit(10000));
+
+
+
+
+
+
+
+
+
+// 5. 더하고 뺴기
+const getSum = (num) => {
+  let total = 0;
+
+  while (num > 0) {
+    total += num % 10;
+    num = Math.floor(num / 10);
+  }
+
+  return total;
+};
+
+const findFruits = (n) => {
+    // const fruits = {
+    //     9:'apple',18:'apple',27:'apple',36:'apple',45:'apple'
+    //     ,54:'apple',72:'apple',81:'apple',90:'apple',99:'apple'
+    // }
+
+    let result = n;
+    while (result > 100) {
+        result -= getSum(result);
+    }
+    result -= getSum(result);
+
+    //return fruits[result];
+    return result % 9 === 0 ? 'apple' : '';
+};
+
+// test
+console.log(findFruits(10));
+console.log(findFruits(11));
